@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel privado — Jardinería Jorge</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="admin-header">
+  <h1>🔒 Panel privado — Jardinería Jorge</h1>
+  <button id="logoutBtn" class="admin-logout" type="button" style="background:none;border:none;cursor:pointer;">Cerrar sesión</button>
+</div>
+
+<div class="admin-shell">
+  <div class="admin-notice" id="statusNotice">Cargando catálogo…</div>
+
+  <!-- ======= LOGO ======= -->
+  <h2 class="admin-section-title">📷 Logo</h2>
+  <div class="admin-card">
+    <div class="logo-preview-row">
+      <img id="logoPreview" alt="Logo actual" width="64" height="64">
+      <div>
+        <input type="file" id="logoFileInput" accept="image/png,image/jpeg,image/webp">
+        <p class="admin-hint">Se actualiza en el menú, el inicio y el footer a la vez.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= TEXTOS DEL SITIO ======= -->
+  <h2 class="admin-section-title">✎ Textos del sitio</h2>
+  <form class="admin-card" id="siteTextForm">
+    <div class="field"><label for="txtBrand">Nombre de la marca</label><input id="txtBrand" name="brandName"></div>
+    <div class="field-row">
+      <div class="field"><label for="txtHeroMain">Título (parte normal)</label><input id="txtHeroMain" name="heroMain"></div>
+      <div class="field"><label for="txtHeroAccent">Título (parte destacada)</label><input id="txtHeroAccent" name="heroAccent"></div>
+    </div>
+    <div class="field"><label for="txtHeroSub">Subtítulo del inicio</label><textarea id="txtHeroSub" name="heroSubtitle"></textarea></div>
+    <div class="field-row">
+      <div class="field"><label for="txtSvcEyebrow">Servicios — frase corta</label><input id="txtSvcEyebrow" name="servicesEyebrow"></div>
+      <div class="field"><label for="txtSvcTitle">Servicios — título</label><input id="txtSvcTitle" name="servicesTitle"></div>
+    </div>
+    <div class="field"><label for="txtSvcDesc">Servicios — descripción</label><textarea id="txtSvcDesc" name="servicesDesc"></textarea></div>
+    <div class="field"><label for="txtFooterTagline">Frase del footer</label><input id="txtFooterTagline" name="footerTagline"></div>
+    <div class="field"><label for="txtCopyright">Copyright</label><input id="txtCopyright" name="copyrightText"></div>
+    <div class="btn-row">
+      <button type="submit" class="btn-sm btn-save">Guardar textos</button>
+      <span class="save-status" id="siteTextStatus"></span>
+    </div>
+  </form>
+
+  <!-- ======= FOOTER: CONTACTO Y REDES ======= -->
+  <h2 class="admin-section-title">📍 Footer: contacto y redes</h2>
+  <form class="admin-card" id="footerForm">
+    <div class="field-row">
+      <div class="field"><label for="fLocation">Distrito / ciudad</label><input id="fLocation" name="location" placeholder="Ej: Surco, Lima"></div>
+      <div class="field"><label for="fWhatsapp">WhatsApp</label><input id="fWhatsapp" name="whatsapp" placeholder="Ej: +51 999 999 999"></div>
+    </div>
+    <div class="field"><label for="fHours">Horario de atención</label><input id="fHours" name="hours" placeholder="Ej: Lun–Sáb, 8am–6pm"></div>
+    <div class="field-row">
+      <div class="field"><label for="fInstagram">Instagram (link completo)</label><input id="fInstagram" name="instagram" placeholder="https://instagram.com/..."></div>
+      <div class="field"><label for="fFacebook">Facebook (link completo)</label><input id="fFacebook" name="facebook" placeholder="https://facebook.com/..."></div>
+    </div>
+    <div class="field"><label for="fTiktok">TikTok (link completo)</label><input id="fTiktok" name="tiktok" placeholder="https://tiktok.com/@..."></div>
+    <div class="btn-row">
+      <button type="submit" class="btn-sm btn-save">Guardar footer</button>
+      <span class="save-status" id="footerStatus"></span>
+    </div>
+  </form>
+
+  <!-- ======= SECCIONES DEL CATÁLOGO ======= -->
+  <h2 class="admin-section-title">🗂️ Secciones del catálogo</h2>
+  <div id="categoriesAdminList"></div>
+  <button type="button" class="btn-sm btn-save" id="addCategoryBtn" style="margin-bottom:8px;">+ Agregar sección</button>
+
+  <!-- ======= PRODUCTOS ======= -->
+  <h2 class="admin-section-title">🌱 Productos por categoría</h2>
+  <div id="productsAdminList"></div>
+
+  <!-- ======= SERVICIOS ======= -->
+  <h2 class="admin-section-title">✂️ Servicios</h2>
+  <div id="servicesAdminList" class="admin-grid"></div>
+  <button type="button" class="btn-sm btn-save" id="addServiceBtn" style="margin-bottom:8px;">+ Agregar servicio</button>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modalContent" role="dialog" aria-modal="true"></div>
+</div>
+
+<script src="dashboard.js" defer></script>
+</body>
+</html>

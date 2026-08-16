@@ -1,0 +1,10 @@
+{
+  "name": "jardineria-jorge-catalogo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catálogo web de Jardinería Jorge — sitio público + panel de administración privado.",
+  "dependencies": {
+    "@vercel/kv": "^1.0.1",
+    "@vercel/blob": "^0.23.0"
+  }
+}
