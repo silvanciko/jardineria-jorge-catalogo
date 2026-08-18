@@ -3,41 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel privado — Jardinería Jorge</title>
+<title>Jardinería Jorge — Catálogo de plantas, fertilizantes y servicios de jardinería</title>
+<meta name="description" content="Fertilizantes, plantas, grass, maceteros y decoración para tu jardín. Además, servicios de poda, siembra y mantenimiento. Consulta por WhatsApp.">
+<meta name="theme-color" content="#1E3524">
+<link rel="canonical" href="/">
 
-<!-- Esta página NUNCA debe indexarse ni aparecer en buscadores -->
-<meta name="robots" content="noindex, nofollow, noarchive">
+<!-- Open Graph / redes sociales -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jardinería Jorge — Catálogo">
+<meta property="og:description" content="Fertilizantes, plantas, grass, maceteros, decoración y servicios de poda y mantenimiento.">
+<meta property="og:image" content="/assets/images/logo.png">
+<meta property="og:locale" content="es_PE">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="/assets/images/logo.png">
+<link rel="apple-touch-icon" href="/assets/images/logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../styles.css">
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<main class="login-screen">
-  <div class="login-card">
-    <form id="loginForm" novalidate>
-      <div class="logo-badge" style="margin:0 auto 18px;">
-        <img src="../assets/images/logo.png" alt="Jardinería Jorge" width="56" height="56">
-      </div>
-      <h1>Panel privado</h1>
-      <p>Acceso exclusivo para la administración del catálogo.</p>
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
-      <div class="login-error" id="loginError" role="alert">Contraseña incorrecta. Intenta de nuevo.</div>
+<div class="loading-banner" id="loadingBanner">Cargando catálogo…</div>
 
-      <div class="field">
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" autocomplete="current-password" required>
-      </div>
+<header>
+  <nav aria-label="Navegación principal">
+    <div class="logo-group">
+      <div class="logo-badge"><img id="navLogoImg" src="assets/images/logo.png" alt="Logo Jardinería Jorge" width="42" height="42"></div>
+      <span class="logo-text" id="navBrandNameEl">Jardinería Jorge</span>
+    </div>
+    <ul class="nav-links" id="navLinks"></ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu"></div>
+</header>
 
-      <button type="submit" class="login-submit" id="loginSubmit">Ingresar</button>
-    </form>
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-logo"><img id="heroLogoImg" src="assets/images/logo.png" alt="Jardinería Jorge" width="132" height="132"></div>
+      <p class="eyebrow">Catálogo</p>
+      <h1><span id="heroMainEl">Todo para tu jardín, en</span><br><em id="heroAccentEl">un solo lugar.</em></h1>
+      <p class="lead" id="heroSubtitleEl">Fertilizantes, plantas, grass, maceteros, decoración y los servicios de poda y mantenimiento que ya conoces. Haz clic en cualquier producto para ver detalles, precio y opiniones.</p>
+    </div>
+    <svg class="soil-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0,35 C240,65 480,5 720,25 C960,50 1200,10 1440,35 L1440,60 L0,60 Z"></path>
+    </svg>
+  </section>
+
+  <div class="search-bar-wrap">
+    <div class="search-inner">
+      <span class="search-ic" aria-hidden="true">🔍</span>
+      <label for="globalSearch" class="visually-hidden">Buscar productos</label>
+      <input type="search" id="globalSearch" class="search-input" placeholder="Buscar por nombre, ej: potus, fertilizante...">
+      <div class="search-hint" id="searchHint" role="status" aria-live="polite"></div>
+    </div>
   </div>
+
+  <section class="featured-section" id="destacados">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Elegidos por nosotros</p>
+        <h2>⭐ Más vendidos</h2>
+        <p>Los productos favoritos de nuestros clientes.</p>
+      </div>
+      <div class="featured-scroll" id="featuredScroll"></div>
+    </div>
+  </section>
+
+  <!-- Secciones de categorías: generadas por script.js desde js/productos.js -->
+  <div id="categorySections"></div>
+
+  <section class="section" id="servicios">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow" id="servicesEyebrowEl">Lo que hacemos</p>
+        <h2 id="servicesTitleEl">✂️ Servicios de poda y mantenimiento</h2>
+        <p id="servicesDescEl">Además de productos, cuidamos tu jardín directamente en tu casa.</p>
+      </div>
+      <div class="service-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
 </main>
 
-<script src="admin.js" defer></script>
+<footer class="site-footer">
+  <div class="footer-top-line"></div>
+  <div class="wrap footer-grid">
+
+    <div class="footer-col">
+      <div class="footer-logo-row">
+        <div class="footer-logo-badge"><img id="footerLogoImg" src="assets/images/logo.png" alt="Logo Jardinería Jorge" width="40" height="40"></div>
+        <span class="footer-brand-name" id="footerBrandNameEl">Jardinería Jorge</span>
+      </div>
+      <p class="footer-tagline" id="footerTaglineEl">Transformando espacios con la belleza de la naturaleza.</p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Contacto</h2>
+      <ul class="footer-contact-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C12 21 5 16.5 5 10.5C5 6.9 7.7 4 12 4C16.3 4 19 6.9 19 10.5C19 16.5 12 21 12 21Z" stroke-width="1.5"/><circle cx="12" cy="10.5" r="2.4" stroke-width="1.5"/></svg>
+          <span id="footerLocation">Consultar por WhatsApp</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5c-1.35 0-2.6-.34-3.7-.94L3 21l1.06-3.7A8.46 8.46 0 013 11.5 8.5 8.5 0 0121 11.5Z" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <span id="footerWhatsapp">Consultar</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke-width="1.5"/><path d="M12 7.5V12L15 14" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span id="footerHours">Consultar horario</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Categorías</h2>
+      <nav class="footer-links-list" id="footerCategoryLinks" aria-label="Categorías del catálogo"></nav>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Síguenos</h2>
+      <div class="footer-social-list">
+        <a href="#" id="footerInstagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a href="#" id="footerFacebook" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 8.5h2V5h-2c-2.2 0-4 1.8-4 4v2H8v3.5h2V21h3.5v-6.5H16l.5-3.5h-3V9c0-.3.2-.5.5-.5Z" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          Facebook
+        </a>
+        <a href="#" id="footerTiktok" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4v10.2a2.8 2.8 0 11-2.4-2.77M14 4c.4 2 1.9 3.4 3.8 3.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          TikTok
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="wrap footer-bottom-inner">
+      <div id="footerCopyrightEl">© 2026 Jardinería Jorge. Todos los derechos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script type="module" src="js/script.js"></script>
 </body>
 </html>
