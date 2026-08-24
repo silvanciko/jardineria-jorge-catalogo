@@ -45,8 +45,12 @@ module.exports = async (req, res) => {
   // Pequeña demora fija: dificulta ataques automatizados de fuerza bruta.
   await new Promise((r) => setTimeout(r, 300));
 
-  if (!verifyPassword(password, storedHash)) {
-    return res.status(401).json({ error: "invalid_password" });
+   if (!verifyPassword(password, storedHash)) {
+    return res.status(401).json({
+      error: "invalid_password",
+      debug_receivedLength: password.length,
+      debug_hashPreview: storedHash.slice(0, 8),
+    });
   }
 
   res.setHeader("Set-Cookie", createSessionCookie());
