@@ -47,7 +47,8 @@ form.addEventListener("submit", async (e) => {
     }
 
     if (res.status === 401) {
-      errorBox.textContent = "Contraseña incorrecta. Intenta de nuevo.";
+      const body = await res.json().catch(() => ({}));
+errorBox.textContent = "Contraseña incorrecta. (longitud recibida: " + body.debug_receivedLength + ", esperado: 11)";
     } else if (res.status === 500) {
       errorBox.textContent = "El servidor todavía no está configurado (falta ADMIN_PASSWORD_HASH en Vercel).";
     } else {
