@@ -1,5 +1,3 @@
-const { requireAuth } = require("./_lib/require-auth");
-
 let kv = null;
 try {
   kv = require("@vercel/kv").kv;
@@ -13,7 +11,6 @@ module.exports = async (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "method_not_allowed" });
   }
-  if (!requireAuth(req, res)) return;
 
   if (!kv) {
     return res.status(503).json({ error: "storage_not_configured" });

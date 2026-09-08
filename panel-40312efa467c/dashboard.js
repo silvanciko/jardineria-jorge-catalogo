@@ -6,22 +6,8 @@
 
 let catalogData = null;
 
-/* ---------- Sesión y arranque ---------- */
-(async function guardSession() {
-  try {
-    const res = await fetch("/api/session");
-    const { authenticated } = await res.json();
-    if (!authenticated) { window.location.href = "index.html"; return; }
-    await loadCatalog();
-  } catch {
-    setNotice("No hay conexión con el servidor.", true);
-  }
-})();
-
-document.getElementById("logoutBtn").addEventListener("click", async () => {
-  try { await fetch("/api/logout", { method: "POST" }); } catch {}
-  window.location.href = "index.html";
-});
+/* ---------- Arranque (sin login: este link ya es privado) ---------- */
+loadCatalog();
 
 function setNotice(msg, isError) {
   const el = document.getElementById("statusNotice");
@@ -33,10 +19,6 @@ function setStatus(elId, msg, isError) {
   el.textContent = msg;
   el.classList.toggle("error", !!isError);
   if (!isError) setTimeout(() => { if (el.textContent === msg) el.textContent = ""; }, 3000);
-}
-async function handleUnauthorized(res) {
-  if (res.status === 401) { window.location.href = "index.html"; return true; }
-  return false;
 }
 
 /* ---------- Cargar / guardar catálogo ---------- */
@@ -61,7 +43,6 @@ async function saveCatalog() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(catalogData),
   });
-  if (await handleUnauthorized(res)) return false;
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
     throw new Error(body.error || "save_failed");
@@ -166,7 +147,6 @@ async function uploadImage(file, opts) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ filename: file.name, dataUrl }),
   });
-  if (await handleUnauthorized(res)) return null;
   if (!res.ok) throw new Error("upload_failed");
   const { url } = await res.json();
   return url;

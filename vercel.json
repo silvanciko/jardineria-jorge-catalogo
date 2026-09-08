@@ -9,7 +9,7 @@
       ]
     },
     {
-      "source": "/admin/(.*)",
+      "source": "/panel-40312efa467c/(.*)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
       ]
