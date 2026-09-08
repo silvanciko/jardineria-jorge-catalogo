@@ -1,7 +1,13 @@
-const { put } = require("@vercel/blob");
 const { requireAuth } = require("./_lib/require-auth");
 
-const MAX_BYTES = 4 * 1024 * 1024; // 4MB por imagen
+let blobPut = null;
+try {
+  blobPut = require("@vercel/blob").put;
+} catch {
+  blobPut = null;
+}
+
+const MAX_BYTES = 4 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 module.exports = async (req, res) => {
@@ -9,6 +15,10 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: "method_not_allowed" });
   }
   if (!requireAuth(req, res)) return;
+
+  if (!blobPut) {
+    return res.status(503).json({ error: "storage_not_configured" });
+  }
 
   let body = req.body;
   if (typeof body === "string") {
@@ -39,7 +49,7 @@ module.exports = async (req, res) => {
   const finalName = `${safeName}.${extByType[contentType]}`;
 
   try {
-    const blob = await put(`catalogo/${Date.now()}-${finalName}`, buffer, {
+    const blob = await blobPut(`catalogo/${Date.now()}-${finalName}`, buffer, {
       access: "public",
       contentType,
     });

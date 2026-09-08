@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/data.js": {
-      "includeFiles": "data/seed.json"
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",

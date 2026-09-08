@@ -1,16 +1,15 @@
 /**
  * api/_lib/auth.js
  * -----------------------------------------------------------------------
- * Maneja la sesión del panel admin con una cookie firmada (HMAC-SHA256).
+ * Sesión del panel admin con cookie firmada (HMAC-SHA256).
  *
- * Por qué esto es seguro:
- * - La cookie es HttpOnly → JavaScript del navegador NO puede leerla
- *   (protege contra robo por XSS).
- * - Es Secure → solo viaja por HTTPS.
- * - Está firmada con SESSION_SECRET (variable de entorno del servidor)
- *   → nadie puede fabricar una cookie válida sin conocer ese secreto,
- *   que nunca se envía al navegador.
- * - Tiene expiración incluida y verificada en el servidor.
+ * IMPORTANTE: para garantizar que esto funcione sin depender de que
+ * las variables de entorno de Vercel estén bien configuradas, el
+ * secreto de firma tiene un valor de respaldo directo aquí. Esto es
+ * menos "perfecto" en seguridad que usar solo variables de entorno,
+ * pero es la solución elegida para que el sistema funcione siempre.
+ * Si más adelante quieres volver al modelo 100% por variables de
+ * entorno, basta con quitar el valor de respaldo de la línea de abajo.
  * -----------------------------------------------------------------------
  */
 
@@ -19,12 +18,10 @@ const crypto = require("crypto");
 const COOKIE_NAME = "admin_session";
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 8; // 8 horas
 
+const FALLBACK_SECRET = "097fc3c203364f37eacdae1010c8bc925c46e5cbcbe5f8968f40a007b45e8f67";
+
 function getSecret() {
-  const secret = process.env.SESSION_SECRET;
-  if (!secret) {
-    throw new Error("Falta configurar la variable de entorno SESSION_SECRET.");
-  }
-  return secret;
+  return process.env.SESSION_SECRET || FALLBACK_SECRET;
 }
 
 function sign(value) {
@@ -66,8 +63,7 @@ function verifySessionCookie(cookieHeader) {
 
   if (expectedBuffer.length !== signatureBuffer.length) return false;
   if (!crypto.timingSafeEqual(expectedBuffer, signatureBuffer)) return false;
-
-  if (Number(value) < Date.now()) return false; // sesión expirada
+  if (Number(value) < Date.now()) return false;
 
   return true;
 }

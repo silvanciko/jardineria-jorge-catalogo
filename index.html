@@ -4,20 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jardinería Jorge — Catálogo de plantas, fertilizantes y servicios de jardinería</title>
-<meta name="description" content="Fertilizantes, plantas, grass, maceteros y decoración para tu jardín. Además, servicios de poda, siembra y mantenimiento. Consulta por WhatsApp.">
+<meta name="description" content="Catálogo de Jardinería Jorge: fertilizantes, plantas, grass, maceteros, decoración y servicios de poda y mantenimiento de jardines. Consulta y cotiza por WhatsApp.">
 <meta name="theme-color" content="#1E3524">
-<link rel="canonical" href="/">
+<link rel="canonical" href="https://www.jardineriajorge.com/">
 
 <!-- Open Graph / redes sociales -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Jardinería Jorge — Catálogo">
-<meta property="og:description" content="Fertilizantes, plantas, grass, maceteros, decoración y servicios de poda y mantenimiento.">
-<meta property="og:image" content="/assets/images/logo.png">
+<meta property="og:description" content="Fertilizantes, plantas, grass, maceteros, decoración y servicios de poda y mantenimiento de jardines.">
+<meta property="og:image" content="https://www.jardineriajorge.com/assets/images/logo.png">
 <meta property="og:locale" content="es_PE">
-<meta name="twitter:card" content="summary">
 
-<link rel="icon" type="image/png" href="/assets/images/logo.png">
-<link rel="apple-touch-icon" href="/assets/images/logo.png">
+<link rel="icon" type="image/png" href="assets/images/logo.png">
+<link rel="apple-touch-icon" href="assets/images/logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,14 +26,14 @@
 </head>
 <body>
 
-<a class="skip-link" href="#main">Saltar al contenido</a>
+<a class="skip-link" href="#main-content">Saltar al contenido principal</a>
 
-<div class="loading-banner" id="loadingBanner">Cargando catálogo…</div>
+<div class="loading-banner" id="loadingBanner" role="status" aria-live="polite">Cargando catálogo…</div>
 
 <header>
   <nav aria-label="Navegación principal">
     <div class="logo-group">
-      <div class="logo-badge"><img id="navLogoImg" src="assets/images/logo.png" alt="Logo Jardinería Jorge" width="42" height="42"></div>
+      <div class="logo-badge"><img id="navLogoImg" src="assets/images/logo.png" alt="Logo de Jardinería Jorge" width="42" height="42"></div>
       <span class="logo-text" id="navBrandNameEl">Jardinería Jorge</span>
     </div>
     <ul class="nav-links" id="navLinks"></ul>
@@ -43,11 +42,11 @@
   <div class="mobile-menu" id="mobileMenu"></div>
 </header>
 
-<main id="main">
+<main id="main-content">
 
   <section class="hero">
     <div class="wrap">
-      <div class="hero-logo"><img id="heroLogoImg" src="assets/images/logo.png" alt="Jardinería Jorge" width="132" height="132"></div>
+      <div class="hero-logo"><img id="heroLogoImg" src="assets/images/logo.png" alt="Logo de Jardinería Jorge" width="132" height="132"></div>
       <p class="eyebrow">Catálogo</p>
       <h1><span id="heroMainEl">Todo para tu jardín, en</span><br><em id="heroAccentEl">un solo lugar.</em></h1>
       <p class="lead" id="heroSubtitleEl">Fertilizantes, plantas, grass, maceteros, decoración y los servicios de poda y mantenimiento que ya conoces. Haz clic en cualquier producto para ver detalles, precio y opiniones.</p>
@@ -59,25 +58,25 @@
 
   <div class="search-bar-wrap">
     <div class="search-inner">
-      <span class="search-ic" aria-hidden="true">🔍</span>
       <label for="globalSearch" class="visually-hidden">Buscar productos</label>
+      <span class="search-ic" aria-hidden="true">🔍</span>
       <input type="search" id="globalSearch" class="search-input" placeholder="Buscar por nombre, ej: potus, fertilizante...">
       <div class="search-hint" id="searchHint" role="status" aria-live="polite"></div>
     </div>
   </div>
 
-  <section class="featured-section" id="destacados">
+  <section class="section" id="destacados">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Elegidos por nosotros</p>
         <h2>⭐ Más vendidos</h2>
         <p>Los productos favoritos de nuestros clientes.</p>
       </div>
-      <div class="featured-scroll" id="featuredScroll"></div>
+      <div class="featured-scroll" id="featuredScroll" role="list"></div>
     </div>
   </section>
 
-  <!-- Secciones de categorías: generadas por script.js desde js/productos.js -->
+  <!-- Secciones de categorías (generadas desde data.js) -->
   <div id="categorySections"></div>
 
   <section class="section" id="servicios">
@@ -87,7 +86,7 @@
         <h2 id="servicesTitleEl">✂️ Servicios de poda y mantenimiento</h2>
         <p id="servicesDescEl">Además de productos, cuidamos tu jardín directamente en tu casa.</p>
       </div>
-      <div class="service-grid" id="servicesGrid"></div>
+      <div class="service-grid" id="servicesGrid" role="list"></div>
     </div>
   </section>
 
@@ -99,7 +98,7 @@
 
     <div class="footer-col">
       <div class="footer-logo-row">
-        <div class="footer-logo-badge"><img id="footerLogoImg" src="assets/images/logo.png" alt="Logo Jardinería Jorge" width="40" height="40"></div>
+        <div class="footer-logo-badge"><img id="footerLogoImg" src="assets/images/logo.png" alt="Logo de Jardinería Jorge" width="40" height="40"></div>
         <span class="footer-brand-name" id="footerBrandNameEl">Jardinería Jorge</span>
       </div>
       <p class="footer-tagline" id="footerTaglineEl">Transformando espacios con la belleza de la naturaleza.</p>
@@ -110,15 +109,15 @@
       <ul class="footer-contact-list">
         <li>
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C12 21 5 16.5 5 10.5C5 6.9 7.7 4 12 4C16.3 4 19 6.9 19 10.5C19 16.5 12 21 12 21Z" stroke-width="1.5"/><circle cx="12" cy="10.5" r="2.4" stroke-width="1.5"/></svg>
-          <span id="footerLocation">Consultar por WhatsApp</span>
+          <span id="footerLocation">Consulta nuestra zona de atención</span>
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5c-1.35 0-2.6-.34-3.7-.94L3 21l1.06-3.7A8.46 8.46 0 013 11.5 8.5 8.5 0 0121 11.5Z" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          <span id="footerWhatsapp">Consultar</span>
+          <span id="footerWhatsapp">Escríbenos por WhatsApp</span>
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke-width="1.5"/><path d="M12 7.5V12L15 14" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span id="footerHours">Consultar horario</span>
+          <span id="footerHours">Horario a coordinar</span>
         </li>
       </ul>
     </div>
@@ -155,7 +154,8 @@
   </div>
 </footer>
 
-<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+<!-- Modal de producto / servicio -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="Detalle">
   <div class="modal" id="modalContent"></div>
 </div>
 

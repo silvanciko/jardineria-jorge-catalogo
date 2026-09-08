@@ -15,13 +15,12 @@
 
 <div class="admin-header">
   <h1>🔒 Panel privado — Jardinería Jorge</h1>
-  <button id="logoutBtn" class="admin-logout" type="button" style="background:none;border:none;cursor:pointer;">Cerrar sesión</button>
+  <button id="logoutBtn" class="admin-logout" type="button">Cerrar sesión</button>
 </div>
 
 <div class="admin-shell">
   <div class="admin-notice" id="statusNotice">Cargando catálogo…</div>
 
-  <!-- ======= LOGO ======= -->
   <h2 class="admin-section-title">📷 Logo</h2>
   <div class="admin-card">
     <div class="logo-preview-row">
@@ -33,7 +32,6 @@
     </div>
   </div>
 
-  <!-- ======= TEXTOS DEL SITIO ======= -->
   <h2 class="admin-section-title">✎ Textos del sitio</h2>
   <form class="admin-card" id="siteTextForm">
     <div class="field"><label for="txtBrand">Nombre de la marca</label><input id="txtBrand" name="brandName"></div>
@@ -55,7 +53,6 @@
     </div>
   </form>
 
-  <!-- ======= FOOTER: CONTACTO Y REDES ======= -->
   <h2 class="admin-section-title">📍 Footer: contacto y redes</h2>
   <form class="admin-card" id="footerForm">
     <div class="field-row">
@@ -74,16 +71,13 @@
     </div>
   </form>
 
-  <!-- ======= SECCIONES DEL CATÁLOGO ======= -->
   <h2 class="admin-section-title">🗂️ Secciones del catálogo</h2>
   <div id="categoriesAdminList"></div>
   <button type="button" class="btn-sm btn-save" id="addCategoryBtn" style="margin-bottom:8px;">+ Agregar sección</button>
 
-  <!-- ======= PRODUCTOS ======= -->
   <h2 class="admin-section-title">🌱 Productos por categoría</h2>
   <div id="productsAdminList"></div>
 
-  <!-- ======= SERVICIOS ======= -->
   <h2 class="admin-section-title">✂️ Servicios</h2>
   <div id="servicesAdminList" class="admin-grid"></div>
   <button type="button" class="btn-sm btn-save" id="addServiceBtn" style="margin-bottom:8px;">+ Agregar servicio</button>

@@ -1,7 +1,15 @@
-const { kv } = require("@vercel/kv");
+/**
+ * api/data.js — público, sin autenticación.
+ * Si Vercel KV no está configurado o falla, entrega los datos de
+ * ejemplo (data/seed.json) — el catálogo nunca se cae por completo.
+ */
+let kv = null;
+try {
+  kv = require("@vercel/kv").kv;
+} catch {
+  kv = null;
+}
 
-// Respaldo mínimo por si, por cualquier motivo, no se puede leer data/seed.json
-// (por ejemplo, un problema de empaquetado). Así el endpoint nunca revienta.
 const MINIMAL_FALLBACK = {
   siteText: { brandName: "Jardinería Jorge", heroMain: "Todo para tu jardín, en", heroAccent: "un solo lugar.",
     heroSubtitle: "", servicesEyebrow: "Lo que hacemos", servicesTitle: "Servicios", servicesDesc: "",
@@ -19,19 +27,14 @@ try {
   seed = MINIMAL_FALLBACK;
 }
 
-/**
- * GET /api/data — público, sin autenticación.
- * Es lo mismo que hoy sirve js/productos.js de forma estática, pero
- * ahora viene de una base de datos real: cuando el admin guarda
- * cambios (POST /api/save), este endpoint los refleja al instante.
- *
- * Si Vercel KV todavía no tiene nada guardado (primer deploy) o si
- * por algún motivo falla, el catálogo sigue funcionando mostrando
- * los datos de ejemplo — nunca se cae por completo.
- */
 module.exports = async (req, res) => {
   if (req.method !== "GET") {
     return res.status(405).json({ error: "method_not_allowed" });
+  }
+
+  if (!kv) {
+    res.setHeader("Cache-Control", "s-maxage=30, stale-while-revalidate=300");
+    return res.status(200).json(seed);
   }
 
   try {

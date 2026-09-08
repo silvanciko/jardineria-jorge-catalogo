@@ -10,7 +10,6 @@
     "footerTagline": "Transformando espacios con la belleza de la naturaleza.",
     "copyrightText": "© 2026 Jardinería Jorge. Todos los derechos reservados."
   },
-
   "footerInfo": {
     "location": "",
     "whatsapp": "",
@@ -19,9 +18,7 @@
     "facebook": "",
     "tiktok": ""
   },
-
   "logo": "/assets/images/logo.png",
-
   "categories": [
     {"id": "fertilizantes", "emoji": "🌱", "name": "Fertilizantes", "eyebrow": "Nutrición para tu jardín", "desc": "Abonos y fertilizantes para que tus plantas, césped y árboles crezcan sanos."},
     {"id": "plantas",       "emoji": "🪴", "name": "Plantas",       "eyebrow": "Elige tu favorita",        "desc": "Plantas de interior y exterior, listas para llevar a tu casa o jardín."},
@@ -29,7 +26,6 @@
     {"id": "maceteros",     "emoji": "🏺", "name": "Maceteros",     "eyebrow": "Para cada rincón",          "desc": "Maceteros de distintos tamaños y materiales para tus plantas."},
     {"id": "decoracion",    "emoji": "✨", "name": "Decoración",    "eyebrow": "Dale estilo a tu jardín",   "desc": "Detalles decorativos para complementar tus áreas verdes."}
   ],
-
   "products": {
     "fertilizantes": [
       {"id": "f1", "name": "Fertilizante orgánico 1kg", "price": "S/ 25.00", "desc": "Abono orgánico de uso general, ideal para plantas de jardín y macetas. Aplicar cada 3-4 semanas.", "img": "", "light": "", "watering": "", "size": "", "potSize": "", "location": "", "difficulty": "", "tags": [], "featured": true, "comments": [{"author": "María G.", "text": "Mis plantas se ven mucho más verdes desde que lo uso."}]},
@@ -49,18 +45,16 @@
     ],
     "decoracion": [
       {"id": "d1", "name": "Piedras decorativas (bolsa)", "price": "S/ 15.00", "desc": "Piedras decorativas para cubrir base de plantas o senderos pequeños.", "img": "", "light": "", "watering": "", "size": "", "potSize": "", "location": "", "difficulty": "", "tags": [], "featured": false, "comments": []},
-      {"id": "d2", "name": "Cerco vivo artificial (m)", "price": "S/ 28.00 / m", "desc": "Panel de cerco vivo artificial, ideal para dar privacidad y verde instantáneo.", "img": "", "light": "", "watering": "", "size": "", "potSize": "", "location": "", "difficulty": "", "tags": ["exterior"], "featured": false, "comments": []}
+      {"id": "d2", "name": "Cerco vivo artificial (m)", "price": "S/ 28.00 / m", "desc": "Panel de cerco vivo artificial, ideal para dar privacidad y verde instantáneo.", "img": "", "light": "", "watering": "", "size": "", "potSize": "", "location": "Exterior", "difficulty": "", "tags": ["exterior"], "featured": false, "comments": []}
     ]
   },
-
   "tips": {
     "fertilizantes": ["Aplica fertilizante después de regar, nunca en tierra seca, para evitar quemar las raíces."],
-    "plantas": ["Las suculentas necesitan menos agua de la que la mayoría cree: riega solo cuando la tierra esté completamente seca.", "Gira tus plantas de interior cada semana para que crezcan parejas hacia la luz."],
+    "plantas": ["Las suculentas necesitan menos agua de la que la mayoría cree.", "Gira tus plantas de interior cada semana para que crezcan parejas hacia la luz."],
     "grass": ["Corta el césped con la cuchilla afilada: un corte limpio cicatriza más rápido y evita plagas."],
     "maceteros": ["Elige un macetero con al menos un agujero de drenaje para evitar raíces ahogadas."],
     "decoracion": ["Combina texturas (piedra, madera, planta) para un jardín con más profundidad visual."]
   },
-
   "services": [
     {"id": "s1", "iconKey": "poda_cesped",   "name": "Poda de césped",           "desc": "Corte parejo y perfilado de bordes, dejando líneas limpias.", "img": ""},
     {"id": "s2", "iconKey": "poda_arboles",  "name": "Poda de árboles",          "desc": "Control de altura y ramas, despejando techos y cables.", "img": ""},
