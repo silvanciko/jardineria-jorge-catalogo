@@ -199,14 +199,38 @@ const SERVICE_ICON_KEYS = ["poda_cesped", "poda_arboles", "mantenimiento", "mode
 function renderCategoriesAdmin() {
   const wrap = document.getElementById("categoriesAdminList");
   wrap.className = "admin-grid";
-  wrap.innerHTML = catalogData.categories.map((c) => `
+  wrap.innerHTML = catalogData.categories.map((c, i) => `
     <div class="admin-mini-card">
       <h4>${c.emoji} ${esc(c.name)}</h4>
       <p>${esc(c.desc)}</p>
-      <div class="mini-actions"><button data-edit-cat="${c.id}">Editar</button></div>
+      <div class="mini-actions">
+        <button data-edit-cat="${c.id}">Editar</button>
+        <button data-move-cat="${i}" data-dir="-1" ${i === 0 ? "disabled style='opacity:.35;cursor:not-allowed;'" : ""} title="Mover arriba">↑</button>
+        <button data-move-cat="${i}" data-dir="1" ${i === catalogData.categories.length - 1 ? "disabled style='opacity:.35;cursor:not-allowed;'" : ""} title="Mover abajo">↓</button>
+      </div>
     </div>
   `).join("");
   wrap.querySelectorAll("[data-edit-cat]").forEach((b) => b.addEventListener("click", () => openCategoryModal(b.dataset.editCat)));
+  wrap.querySelectorAll("[data-move-cat]").forEach((b) => b.addEventListener("click", () => {
+    if (b.disabled) return;
+    moveCategory(Number(b.dataset.moveCat), Number(b.dataset.dir));
+  }));
+}
+
+async function moveCategory(index, dir) {
+  const arr = catalogData.categories;
+  const target = index + dir;
+  if (target < 0 || target >= arr.length) return;
+  [arr[index], arr[target]] = [arr[target], arr[index]];
+  try {
+    if (await saveCatalog()) {
+      renderCategoriesAdmin();
+      renderProductsAdmin();
+    }
+  } catch {
+    [arr[index], arr[target]] = [arr[target], arr[index]]; // deshacer el cambio si no se pudo guardar
+    setNotice("No se pudo guardar el nuevo orden. Intenta de nuevo.", true);
+  }
 }
 
 function openCategoryModal(catId) {
