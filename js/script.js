@@ -107,7 +107,7 @@ function renderStaticText() {
 
   const illoWrap = document.querySelector(".hero-illustration");
   if (illoWrap && SITE_TEXT.heroImage) {
-    illoWrap.innerHTML = `<img src="${SITE_TEXT.heroImage}" alt="" style="width:100%;max-width:340px;height:auto;border-radius:18px;object-fit:cover;box-shadow:0 20px 40px -14px rgba(0,0,0,0.45);">`;
+    illoWrap.innerHTML = `<img src="${SITE_TEXT.heroImage}" alt="" class="hero-photo">`;
   }
 }
 
