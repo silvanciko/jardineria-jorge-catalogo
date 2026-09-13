@@ -52,6 +52,28 @@
     </div>
   </form>
 
+  <h2 class="admin-section-title">🎨 Apariencia del inicio</h2>
+  <form class="admin-card" id="heroAppearanceForm">
+    <div class="field">
+      <label>Foto del inicio (opcional — si no subes ninguna, se muestra la ilustración de planta)</label>
+      <div class="logo-preview-row">
+        <img id="heroImgPreview" alt="Vista previa" width="90" height="60" style="object-fit:cover;">
+        <input type="file" id="heroImgInput" accept="image/png,image/jpeg,image/webp">
+      </div>
+      <label class="checkbox-chip" style="width:fit-content;margin-top:10px;">
+        <input type="checkbox" id="heroImgRemove"> Quitar foto y volver a la ilustración
+      </label>
+    </div>
+    <div class="field-row">
+      <div class="field"><label for="heroColor1">Color de fondo (arriba)</label><input type="color" id="heroColor1" style="height:44px;"></div>
+      <div class="field"><label for="heroColor2">Color de fondo (abajo)</label><input type="color" id="heroColor2" style="height:44px;"></div>
+    </div>
+    <div class="btn-row">
+      <button type="submit" class="btn-sm btn-save">Guardar apariencia</button>
+      <span class="save-status" id="heroAppearanceStatus"></span>
+    </div>
+  </form>
+
   <h2 class="admin-section-title">📍 Footer: contacto y redes</h2>
   <form class="admin-card" id="footerForm">
     <div class="field-row">

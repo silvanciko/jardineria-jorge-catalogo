@@ -18,6 +18,9 @@ export const SITE_TEXT = {
   servicesDesc: "Además de productos, cuidamos tu jardín directamente en tu casa.",
   footerTagline: "Transformando espacios con la belleza de la naturaleza.",
   copyrightText: "© 2026 Jardinería Jorge. Todos los derechos reservados.",
+  heroImage: "",
+  heroColor1: "#1E3524",
+  heroColor2: "#3E5C3A",
 };
 
 export const FOOTER_INFO = {

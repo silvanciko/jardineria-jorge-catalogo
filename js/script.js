@@ -97,6 +97,18 @@ function renderStaticText() {
   document.querySelectorAll(".logo-badge img, .hero-logo img, .footer-logo-badge img").forEach((img) => {
     img.src = liveLogoUrl;
   });
+
+  const hero = document.querySelector(".hero");
+  if (hero && (SITE_TEXT.heroColor1 || SITE_TEXT.heroColor2)) {
+    const c1 = SITE_TEXT.heroColor1 || "#1E3524";
+    const c2 = SITE_TEXT.heroColor2 || "#3E5C3A";
+    hero.style.background = `linear-gradient(160deg, ${c1} 0%, ${c2} 100%)`;
+  }
+
+  const illoWrap = document.querySelector(".hero-illustration");
+  if (illoWrap && SITE_TEXT.heroImage) {
+    illoWrap.innerHTML = `<img src="${SITE_TEXT.heroImage}" alt="" style="width:100%;max-width:340px;height:auto;border-radius:18px;object-fit:cover;box-shadow:0 20px 40px -14px rgba(0,0,0,0.45);">`;
+  }
 }
 
 /* =========================================================

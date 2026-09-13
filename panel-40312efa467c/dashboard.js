@@ -62,6 +62,10 @@ function fillForms() {
   document.getElementById("txtFooterTagline").value = st.footerTagline || "";
   document.getElementById("txtCopyright").value = st.copyrightText || "";
 
+  document.getElementById("heroColor1").value = st.heroColor1 || "#1E3524";
+  document.getElementById("heroColor2").value = st.heroColor2 || "#3E5C3A";
+  document.getElementById("heroImgPreview").src = st.heroImage || "../assets/images/logo.png";
+
   const fi = catalogData.footerInfo || {};
   document.getElementById("fLocation").value = fi.location || "";
   document.getElementById("fWhatsapp").value = fi.whatsapp || "";
@@ -108,6 +112,34 @@ document.getElementById("footerForm").addEventListener("submit", async (e) => {
     const ok = await saveCatalog();
     if (ok) setStatus("footerStatus", "✓ Guardado");
   } catch { setStatus("footerStatus", "No se pudo guardar. Intenta de nuevo.", true); }
+});
+
+document.getElementById("heroAppearanceForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const removeCheckbox = document.getElementById("heroImgRemove");
+  const fileInput = document.getElementById("heroImgInput");
+
+  catalogData.siteText.heroColor1 = document.getElementById("heroColor1").value;
+  catalogData.siteText.heroColor2 = document.getElementById("heroColor2").value;
+
+  try {
+    if (removeCheckbox.checked) {
+      catalogData.siteText.heroImage = "";
+    } else if (fileInput.files[0]) {
+      const url = await uploadImage(fileInput.files[0], { maxW: 900, quality: 0.75 });
+      if (!url) return;
+      catalogData.siteText.heroImage = url;
+    }
+    const ok = await saveCatalog();
+    if (ok) {
+      setStatus("heroAppearanceStatus", "✓ Guardado");
+      document.getElementById("heroImgPreview").src = catalogData.siteText.heroImage || "../assets/images/logo.png";
+      removeCheckbox.checked = false;
+      fileInput.value = "";
+    }
+  } catch {
+    setStatus("heroAppearanceStatus", "No se pudo guardar. Intenta con una imagen más liviana.", true);
+  }
 });
 
 /* ---------- Compresión de imágenes: WebP con respaldo a JPEG ---------- */
@@ -199,14 +231,38 @@ const SERVICE_ICON_KEYS = ["poda_cesped", "poda_arboles", "mantenimiento", "mode
 function renderCategoriesAdmin() {
   const wrap = document.getElementById("categoriesAdminList");
   wrap.className = "admin-grid";
-  wrap.innerHTML = catalogData.categories.map((c) => `
+  wrap.innerHTML = catalogData.categories.map((c, i) => `
     <div class="admin-mini-card">
       <h4>${c.emoji} ${esc(c.name)}</h4>
       <p>${esc(c.desc)}</p>
-      <div class="mini-actions"><button data-edit-cat="${c.id}">Editar</button></div>
+      <div class="mini-actions">
+        <button data-edit-cat="${c.id}">Editar</button>
+        <button data-move-cat="${i}" data-dir="-1" ${i === 0 ? "disabled style='opacity:.35;cursor:not-allowed;'" : ""} title="Mover arriba">↑</button>
+        <button data-move-cat="${i}" data-dir="1" ${i === catalogData.categories.length - 1 ? "disabled style='opacity:.35;cursor:not-allowed;'" : ""} title="Mover abajo">↓</button>
+      </div>
     </div>
   `).join("");
   wrap.querySelectorAll("[data-edit-cat]").forEach((b) => b.addEventListener("click", () => openCategoryModal(b.dataset.editCat)));
+  wrap.querySelectorAll("[data-move-cat]").forEach((b) => b.addEventListener("click", () => {
+    if (b.disabled) return;
+    moveCategory(Number(b.dataset.moveCat), Number(b.dataset.dir));
+  }));
+}
+
+async function moveCategory(index, dir) {
+  const arr = catalogData.categories;
+  const target = index + dir;
+  if (target < 0 || target >= arr.length) return;
+  [arr[index], arr[target]] = [arr[target], arr[index]];
+  try {
+    if (await saveCatalog()) {
+      renderCategoriesAdmin();
+      renderProductsAdmin();
+    }
+  } catch {
+    [arr[index], arr[target]] = [arr[target], arr[index]]; // deshacer el cambio si no se pudo guardar
+    setNotice("No se pudo guardar el nuevo orden. Intenta de nuevo.", true);
+  }
 }
 
 function openCategoryModal(catId) {
