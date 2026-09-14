@@ -105,9 +105,16 @@ function renderStaticText() {
     hero.style.background = `linear-gradient(160deg, ${c1} 0%, ${c2} 100%)`;
   }
 
-  const illoWrap = document.querySelector(".hero-illustration");
+  const illoWrap = document.getElementById("heroPhotoWrap");
   if (illoWrap && SITE_TEXT.heroImage) {
     illoWrap.innerHTML = `<img src="${SITE_TEXT.heroImage}" alt="" class="hero-photo">`;
+  }
+
+  const badgesWrap = document.getElementById("heroFloatBadges");
+  if (badgesWrap && CATEGORIES.length) {
+    badgesWrap.innerHTML = CATEGORIES.slice(0, 2)
+      .map((c) => `<span class="hero-float-badge">${c.emoji} ${escapeHtml(c.name)}</span>`)
+      .join("");
   }
 }
 
