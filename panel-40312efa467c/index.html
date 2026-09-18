@@ -3,190 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jardinería Jorge — Catálogo de plantas, fertilizantes y servicios de jardinería</title>
-<meta name="description" content="Catálogo de Jardinería Jorge: fertilizantes, plantas, grass, maceteros, decoración y servicios de poda y mantenimiento de jardines. Consulta y cotiza por WhatsApp.">
-<meta name="theme-color" content="#1E3524">
-<link rel="canonical" href="https://www.jardineriajorge.com/">
-
-<!-- Open Graph / redes sociales -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jardinería Jorge — Catálogo">
-<meta property="og:description" content="Fertilizantes, plantas, grass, maceteros, decoración y servicios de poda y mantenimiento de jardines.">
-<meta property="og:image" content="https://www.jardineriajorge.com/assets/images/logo.png">
-<meta property="og:locale" content="es_PE">
-
-<link rel="icon" type="image/png" href="assets/images/logo.png">
-<link rel="apple-touch-icon" href="assets/images/logo.png">
-
+<title>Panel privado — Jardinería Jorge</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
-<a class="skip-link" href="#main-content">Saltar al contenido principal</a>
-
-<div class="loading-banner" id="loadingBanner" role="status" aria-live="polite">Cargando catálogo…</div>
-
-<header>
-  <nav aria-label="Navegación principal">
-    <div class="logo-group">
-      <div class="logo-badge"><img id="navLogoImg" src="assets/images/logo.png" alt="Logo de Jardinería Jorge" width="42" height="42"></div>
-      <span class="logo-text" id="navBrandNameEl">Jardinería Jorge</span>
-    </div>
-    <ul class="nav-links" id="navLinks"></ul>
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">☰</button>
-  </nav>
-  <div class="mobile-menu" id="mobileMenu"></div>
-</header>
-
-<main id="main-content">
-
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-text">
-        <div class="hero-logo"><img id="heroLogoImg" src="assets/images/logo.png" alt="Logo de Jardinería Jorge" width="72" height="72"></div>
-        <p class="eyebrow eyebrow-badge">🌿 Catálogo</p>
-        <h1><span id="heroMainEl">Todo para tu jardín, en</span><br><em id="heroAccentEl">un solo lugar.</em></h1>
-        <p class="lead" id="heroSubtitleEl">Fertilizantes, plantas, grass, maceteros, decoración y los servicios de poda y mantenimiento que ya conoces. Haz clic en cualquier producto para ver detalles, precio y opiniones.</p>
-        <a href="#destacados" class="hero-cta-btn">
-          Ver catálogo
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-      <div class="hero-illustration">
-        <div class="hero-photo-wrap" id="heroPhotoWrap" aria-hidden="true">
-        <svg viewBox="0 0 380 360" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="190" cy="330" rx="150" ry="14" fill="rgba(0,0,0,0.15)"/>
-          <path d="M190 330 C190 250 150 220 150 160 C150 120 175 100 190 90 C205 100 230 120 230 160 C230 220 190 250 190 330Z" fill="#3E5C3A"/>
-          <path d="M190 330 C190 250 150 220 150 160" stroke="#1E3524" stroke-width="2" fill="none"/>
-          <path d="M190 200 C160 190 140 170 130 140" stroke="#5C7A4F" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <path d="M190 240 C220 230 245 205 255 175" stroke="#5C7A4F" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <path d="M190 160 C165 150 148 128 140 100" stroke="#D4A24C" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.85"/>
-          <path d="M190 130 C210 118 225 98 230 75" stroke="#E8C77E" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.85"/>
-          <circle cx="130" cy="140" r="9" fill="#E8C77E"/>
-          <circle cx="255" cy="175" r="7" fill="#D4A24C"/>
-          <circle cx="140" cy="100" r="6" fill="#D4A24C"/>
-          <circle cx="230" cy="75" r="8" fill="#E8C77E"/>
-        </svg>
-        </div>
-        <div class="hero-float-badges" id="heroFloatBadges"></div>
-      </div>
-    </div>
-    <svg class="soil-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M0,35 C240,65 480,5 720,25 C960,50 1200,10 1440,35 L1440,60 L0,60 Z"></path>
-    </svg>
-  </section>
-
-  <div class="search-bar-wrap">
-    <div class="search-inner">
-      <label for="globalSearch" class="visually-hidden">Buscar productos</label>
-      <span class="search-ic" aria-hidden="true">🔍</span>
-      <input type="search" id="globalSearch" class="search-input" placeholder="Buscar por nombre, ej: potus, fertilizante...">
-      <div class="search-hint" id="searchHint" role="status" aria-live="polite"></div>
-    </div>
-  </div>
-
-  <section class="section" id="destacados">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Elegidos por nosotros</p>
-        <h2>⭐ Más vendidos</h2>
-        <p>Los productos favoritos de nuestros clientes.</p>
-      </div>
-      <div class="featured-scroll" id="featuredScroll" role="list"></div>
-    </div>
-  </section>
-
-  <!-- Secciones de categorías (generadas desde data.js) -->
-  <div id="categorySections"></div>
-
-  <section class="section" id="servicios">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow" id="servicesEyebrowEl">Lo que hacemos</p>
-        <h2 id="servicesTitleEl">✂️ Servicios de poda y mantenimiento</h2>
-        <p id="servicesDescEl">Además de productos, cuidamos tu jardín directamente en tu casa.</p>
-      </div>
-      <div class="service-grid" id="servicesGrid" role="list"></div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="footer-top-line"></div>
-  <div class="wrap footer-grid">
-
-    <div class="footer-col">
-      <div class="footer-logo-row">
-        <div class="footer-logo-badge"><img id="footerLogoImg" src="assets/images/logo.png" alt="Logo de Jardinería Jorge" width="40" height="40"></div>
-        <span class="footer-brand-name" id="footerBrandNameEl">Jardinería Jorge</span>
-      </div>
-      <p class="footer-tagline" id="footerTaglineEl">Transformando espacios con la belleza de la naturaleza.</p>
-    </div>
-
-    <div class="footer-col">
-      <h2 class="footer-heading">Contacto</h2>
-      <ul class="footer-contact-list">
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21C12 21 5 16.5 5 10.5C5 6.9 7.7 4 12 4C16.3 4 19 6.9 19 10.5C19 16.5 12 21 12 21Z" stroke-width="1.5"/><circle cx="12" cy="10.5" r="2.4" stroke-width="1.5"/></svg>
-          <span id="footerLocation">Consulta nuestra zona de atención</span>
-        </li>
-        <li id="footerMapsItem" style="display:none;">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <a id="footerMapsLink" href="#" target="_blank" rel="noopener noreferrer">Ver ubicación en Maps</a>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5c-1.35 0-2.6-.34-3.7-.94L3 21l1.06-3.7A8.46 8.46 0 013 11.5 8.5 8.5 0 0121 11.5Z" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          <span id="footerWhatsapp">Escríbenos por WhatsApp</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke-width="1.5"/><path d="M12 7.5V12L15 14" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span id="footerHours">Horario a coordinar</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h2 class="footer-heading">Categorías</h2>
-      <nav class="footer-links-list" id="footerCategoryLinks" aria-label="Categorías del catálogo"></nav>
-    </div>
-
-    <div class="footer-col">
-      <h2 class="footer-heading">Síguenos</h2>
-      <div class="footer-social-list">
-        <a href="#" id="footerInstagram" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg>
-          Instagram
-        </a>
-        <a href="#" id="footerFacebook" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 8.5h2V5h-2c-2.2 0-4 1.8-4 4v2H8v3.5h2V21h3.5v-6.5H16l.5-3.5h-3V9c0-.3.2-.5.5-.5Z" stroke-width="1.3" stroke-linejoin="round"/></svg>
-          Facebook
-        </a>
-        <a href="#" id="footerTiktok" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4v10.2a2.8 2.8 0 11-2.4-2.77M14 4c.4 2 1.9 3.4 3.8 3.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          TikTok
-        </a>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <div class="wrap footer-bottom-inner">
-      <div id="footerCopyrightEl">© 2026 Jardinería Jorge. Todos los derechos reservados.</div>
-    </div>
-  </div>
-</footer>
-
-<!-- Modal de producto / servicio -->
-<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="Detalle">
-  <div class="modal" id="modalContent"></div>
+<div class="admin-header">
+  <h1>🔒 Panel privado — Jardinería Jorge</h1>
 </div>
 
-<script type="module" src="js/script.js"></script>
+<div class="admin-shell">
+  <div class="admin-notice" id="statusNotice">Cargando catálogo…</div>
+
+  <h2 class="admin-section-title">📷 Logo</h2>
+  <div class="admin-card">
+    <div class="logo-preview-row">
+      <img id="logoPreview" alt="Logo actual" width="64" height="64">
+      <div>
+        <input type="file" id="logoFileInput" accept="image/png,image/jpeg,image/webp">
+        <p class="admin-hint">Se actualiza en el menú, el inicio y el footer a la vez.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="admin-section-title">✎ Textos del sitio</h2>
+  <form class="admin-card" id="siteTextForm">
+    <div class="field"><label for="txtBrand">Nombre de la marca</label><input id="txtBrand" name="brandName"></div>
+    <div class="field-row">
+      <div class="field"><label for="txtHeroMain">Título (parte normal)</label><input id="txtHeroMain" name="heroMain"></div>
+      <div class="field"><label for="txtHeroAccent">Título (parte destacada)</label><input id="txtHeroAccent" name="heroAccent"></div>
+    </div>
+    <div class="field"><label for="txtHeroSub">Subtítulo del inicio</label><textarea id="txtHeroSub" name="heroSubtitle"></textarea></div>
+    <div class="field-row">
+      <div class="field"><label for="txtSvcEyebrow">Servicios — frase corta</label><input id="txtSvcEyebrow" name="servicesEyebrow"></div>
+      <div class="field"><label for="txtSvcTitle">Servicios — título</label><input id="txtSvcTitle" name="servicesTitle"></div>
+    </div>
+    <div class="field"><label for="txtSvcDesc">Servicios — descripción</label><textarea id="txtSvcDesc" name="servicesDesc"></textarea></div>
+    <div class="field"><label for="txtFooterTagline">Frase del footer</label><input id="txtFooterTagline" name="footerTagline"></div>
+    <div class="field"><label for="txtCopyright">Copyright</label><input id="txtCopyright" name="copyrightText"></div>
+    <div class="btn-row">
+      <button type="submit" class="btn-sm btn-save">Guardar textos</button>
+      <span class="save-status" id="siteTextStatus"></span>
+    </div>
+  </form>
+
+  <h2 class="admin-section-title">🎨 Apariencia del inicio</h2>
+  <form class="admin-card" id="heroAppearanceForm">
+    <div class="field">
+      <label>Foto del inicio (opcional — si no subes ninguna, se muestra la ilustración de planta)</label>
+      <div class="logo-preview-row">
+        <img id="heroImgPreview" alt="Vista previa" width="90" height="60" style="object-fit:cover;">
+        <input type="file" id="heroImgInput" accept="image/png,image/jpeg,image/webp">
+      </div>
+      <label class="checkbox-chip" style="width:fit-content;margin-top:10px;">
+        <input type="checkbox" id="heroImgRemove"> Quitar foto y volver a la ilustración
+      </label>
+    </div>
+    <div class="field-row">
+      <div class="field"><label for="heroColor1">Color de fondo (arriba)</label><input type="color" id="heroColor1" style="height:44px;"></div>
+      <div class="field"><label for="heroColor2">Color de fondo (abajo)</label><input type="color" id="heroColor2" style="height:44px;"></div>
+    </div>
+    <div class="btn-row">
+      <button type="submit" class="btn-sm btn-save">Guardar apariencia</button>
+      <span class="save-status" id="heroAppearanceStatus"></span>
+    </div>
+  </form>
+
+  <h2 class="admin-section-title">📍 Footer: contacto y redes</h2>
+  <form class="admin-card" id="footerForm">
+    <div class="field-row">
+      <div class="field"><label for="fLocation">Distrito / ciudad</label><input id="fLocation" name="location" placeholder="Ej: Surco, Lima"></div>
+      <div class="field"><label for="fWhatsapp">WhatsApp</label><input id="fWhatsapp" name="whatsapp" placeholder="Ej: +51 999 999 999"></div>
+    </div>
+    <div class="field">
+      <label for="fMapsLink">Link de Google Maps (opcional)</label>
+      <input id="fMapsLink" name="mapsLink" placeholder="https://maps.app.goo.gl/...">
+      <p class="admin-hint">Abre Google Maps, busca tu negocio (o la dirección), toca "Compartir" y copia el link — pégalo aquí.</p>
+    </div>
+    <div class="field"><label for="fHours">Horario de atención</label><input id="fHours" name="hours" placeholder="Ej: Lun–Sáb, 8am–6pm"></div>
+    <div class="field-row">
+      <div class="field"><label for="fInstagram">Instagram (link completo)</label><input id="fInstagram" name="instagram" placeholder="https://instagram.com/..."></div>
+      <div class="field"><label for="fFacebook">Facebook (link completo)</label><input id="fFacebook" name="facebook" placeholder="https://facebook.com/..."></div>
+    </div>
+    <div class="field"><label for="fTiktok">TikTok (link completo)</label><input id="fTiktok" name="tiktok" placeholder="https://tiktok.com/@..."></div>
+    <div class="btn-row">
+      <button type="submit" class="btn-sm btn-save">Guardar footer</button>
+      <span class="save-status" id="footerStatus"></span>
+    </div>
+  </form>
+
+  <h2 class="admin-section-title">🗂️ Secciones del catálogo</h2>
+  <div id="categoriesAdminList"></div>
+  <button type="button" class="btn-sm btn-save" id="addCategoryBtn" style="margin-bottom:8px;">+ Agregar sección</button>
+
+  <h2 class="admin-section-title">🌱 Productos por categoría</h2>
+  <div id="productsAdminList"></div>
+
+  <h2 class="admin-section-title">💡 Consejos de jardinería</h2>
+  <div id="tipsAdminList"></div>
+
+  <h2 class="admin-section-title">✂️ Servicios</h2>
+  <div id="servicesAdminList" class="admin-grid"></div>
+  <button type="button" class="btn-sm btn-save" id="addServiceBtn" style="margin-bottom:8px;">+ Agregar servicio</button>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modalContent" role="dialog" aria-modal="true"></div>
+</div>
+
+<script src="dashboard.js" defer></script>
 </body>
 </html>
