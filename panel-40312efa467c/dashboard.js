@@ -30,6 +30,7 @@ async function loadCatalog() {
     fillForms();
     renderCategoriesAdmin();
     renderProductsAdmin();
+    renderTipsAdmin();
     renderServicesAdmin();
     setNotice("Catálogo cargado. Los cambios que guardes acá se reflejan en el sitio público al instante.");
   } catch {
@@ -68,6 +69,7 @@ function fillForms() {
 
   const fi = catalogData.footerInfo || {};
   document.getElementById("fLocation").value = fi.location || "";
+  document.getElementById("fMapsLink").value = fi.mapsLink || "";
   document.getElementById("fWhatsapp").value = fi.whatsapp || "";
   document.getElementById("fHours").value = fi.hours || "";
   document.getElementById("fInstagram").value = fi.instagram || "";
@@ -102,6 +104,7 @@ document.getElementById("footerForm").addEventListener("submit", async (e) => {
   const form = e.target;
   catalogData.footerInfo = {
     location: form.location.value.trim(),
+    mapsLink: form.mapsLink.value.trim(),
     whatsapp: form.whatsapp.value.trim(),
     hours: form.hours.value.trim(),
     instagram: form.instagram.value.trim(),
@@ -258,6 +261,7 @@ async function moveCategory(index, dir) {
     if (await saveCatalog()) {
       renderCategoriesAdmin();
       renderProductsAdmin();
+      renderTipsAdmin();
     }
   } catch {
     [arr[index], arr[target]] = [arr[target], arr[index]]; // deshacer el cambio si no se pudo guardar
@@ -302,7 +306,7 @@ function openCategoryModal(catId) {
     } else {
       Object.assign(cat, { emoji, name, eyebrow, desc });
     }
-    if (await saveCatalog()) { renderCategoriesAdmin(); renderProductsAdmin(); closeModal(); }
+    if (await saveCatalog()) { renderCategoriesAdmin(); renderProductsAdmin(); renderTipsAdmin(); closeModal(); }
   });
 
   if (!isNew) {
@@ -312,7 +316,7 @@ function openCategoryModal(catId) {
       catalogData.categories = catalogData.categories.filter((c) => c.id !== cat.id);
       delete catalogData.products[cat.id];
       delete catalogData.tips[cat.id];
-      if (await saveCatalog()) { renderCategoriesAdmin(); renderProductsAdmin(); closeModal(); }
+      if (await saveCatalog()) { renderCategoriesAdmin(); renderProductsAdmin(); renderTipsAdmin(); closeModal(); }
     });
   }
 }
@@ -431,6 +435,73 @@ function openProductModal(catId, prodId) {
 }
 
 /* ---------- Servicios ---------- */
+/* ---------- Consejos de jardinería ---------- */
+function renderTipsAdmin() {
+  const wrap = document.getElementById("tipsAdminList");
+  wrap.innerHTML = catalogData.categories.map((cat) => {
+    const tips = catalogData.tips[cat.id] || [];
+    return `
+      <div class="admin-cat-group">
+        <h3>${cat.emoji} ${esc(cat.name)}</h3>
+        ${tips.length ? tips.map((tip, i) => `
+          <div class="admin-card" style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;padding:14px 18px;">
+            <p style="margin:0;font-size:0.9rem;">💡 ${esc(tip)}</p>
+            <div class="mini-actions" style="flex-shrink:0;">
+              <button data-edit-tip="${cat.id}|${i}">Editar</button>
+            </div>
+          </div>
+        `).join("") : `<p class="admin-hint" style="margin-bottom:10px;">Todavía no hay consejos para esta sección.</p>`}
+        <button type="button" class="add-mini" data-add-tip="${cat.id}" style="min-height:56px;">+ Agregar consejo</button>
+      </div>
+    `;
+  }).join("");
+
+  wrap.querySelectorAll("[data-edit-tip]").forEach((b) => {
+    const [catId, idx] = b.dataset.editTip.split("|");
+    b.addEventListener("click", () => openTipModal(catId, Number(idx)));
+  });
+  wrap.querySelectorAll("[data-add-tip]").forEach((b) => b.addEventListener("click", () => openTipModal(b.dataset.addTip, null)));
+}
+
+function openTipModal(catId, index) {
+  const isNew = index === null;
+  const currentText = isNew ? "" : (catalogData.tips[catId] || [])[index];
+
+  openModal(`
+    <div class="modal-body">
+      <div class="modal-close" id="closeModal">✕</div>
+      <h3>${isNew ? "Nuevo consejo" : "Editar consejo"}</h3>
+      <div class="field"><label>Texto del consejo</label><textarea id="mTipText" placeholder="Ej: Riega tus suculentas solo cuando la tierra esté completamente seca.">${esc(currentText)}</textarea></div>
+      <div class="btn-row">
+        <button class="btn-sm btn-save" id="mSave">Guardar</button>
+        ${!isNew ? `<button class="btn-sm btn-del" id="mDel">Eliminar consejo</button>` : ""}
+        <button class="btn-sm btn-cancel" id="mCancel">Cancelar</button>
+      </div>
+    </div>
+  `);
+  document.getElementById("mCancel").addEventListener("click", closeModal);
+
+  document.getElementById("mSave").addEventListener("click", async () => {
+    const text = document.getElementById("mTipText").value.trim();
+    if (!text) { alert("Escribe el texto del consejo."); return; }
+    if (!catalogData.tips[catId]) catalogData.tips[catId] = [];
+    if (isNew) {
+      catalogData.tips[catId].push(text);
+    } else {
+      catalogData.tips[catId][index] = text;
+    }
+    if (await saveCatalog()) { renderTipsAdmin(); closeModal(); }
+  });
+
+  if (!isNew) {
+    document.getElementById("mDel").addEventListener("click", async () => {
+      if (!confirm("¿Eliminar este consejo?")) return;
+      catalogData.tips[catId].splice(index, 1);
+      if (await saveCatalog()) { renderTipsAdmin(); closeModal(); }
+    });
+  }
+}
+
 function renderServicesAdmin() {
   const wrap = document.getElementById("servicesAdminList");
   wrap.innerHTML = catalogData.services.map((s) => `

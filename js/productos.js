@@ -25,6 +25,7 @@ export const SITE_TEXT = {
 
 export const FOOTER_INFO = {
   location: "",
+  mapsLink: "",
   whatsapp: "",
   hours: "",
   instagram: "",

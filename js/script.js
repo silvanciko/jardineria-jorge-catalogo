@@ -84,6 +84,17 @@ function renderStaticText() {
   set("footerTaglineEl", SITE_TEXT.footerTagline);
   set("footerCopyrightEl", SITE_TEXT.copyrightText);
   set("footerLocation", FOOTER_INFO.location || "[ Tu distrito / ciudad ]");
+
+  const mapsItem = document.getElementById("footerMapsItem");
+  const mapsLink = document.getElementById("footerMapsLink");
+  if (mapsItem && mapsLink) {
+    if (FOOTER_INFO.mapsLink) {
+      mapsLink.href = FOOTER_INFO.mapsLink;
+      mapsItem.style.display = "";
+    } else {
+      mapsItem.style.display = "none";
+    }
+  }
   set("footerWhatsapp", FOOTER_INFO.whatsapp || "[ Tu número de WhatsApp ]");
   set("footerHours", FOOTER_INFO.hours || "[ Ej: Lun–Sáb, 8am–6pm ]");
 
