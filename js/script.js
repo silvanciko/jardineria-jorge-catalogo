@@ -114,11 +114,13 @@ function renderStaticText() {
     const c1 = SITE_TEXT.heroColor1 || "#1E3524";
     const c2 = SITE_TEXT.heroColor2 || "#3E5C3A";
     hero.style.background = `linear-gradient(160deg, ${c1} 0%, ${c2} 100%)`;
+    hero.style.setProperty("--hero-c1", c1);
+    hero.style.setProperty("--hero-c2", c2);
   }
 
-  const illoWrap = document.getElementById("heroPhotoWrap");
-  if (illoWrap && SITE_TEXT.heroImage) {
-    illoWrap.innerHTML = `<img src="${SITE_TEXT.heroImage}" alt="" class="hero-photo">`;
+  const bgPhoto = document.getElementById("heroBgPhoto");
+  if (bgPhoto && SITE_TEXT.heroImage) {
+    bgPhoto.innerHTML = `<img src="${SITE_TEXT.heroImage}" alt="">`;
   }
 
   const badgesWrap = document.getElementById("heroFloatBadges");
