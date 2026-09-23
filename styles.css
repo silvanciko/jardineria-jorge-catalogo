@@ -70,7 +70,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:12px 3
   position:relative;
   background:linear-gradient(160deg,var(--hero-c1) 0%,#24402A 55%,var(--hero-c2) 100%);
   color:var(--white);
-  padding:150px 0 70px;
+  padding:150px 0 90px;
   overflow:hidden;
 }
 .hero-inner{position:relative;z-index:3;}
@@ -126,12 +126,15 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:12px 3
 }
 .hero-bottom-fade{
   /* clean end of the hero section: fades to the page background
-     instead of a wavy divider. Stays fully green until late, then
-     resolves quickly, so there's no long muddy green/beige band. */
-  position:absolute;left:0;right:0;bottom:0;height:85px;
+     instead of a wavy divider. Multiple soft steps (ease curve)
+     instead of two flat stops, so there's no visible hard line. */
+  position:absolute;left:0;right:0;bottom:0;height:140px;
   background:linear-gradient(to bottom,
     rgba(239,234,216,0) 0%,
-    rgba(239,234,216,0) 35%,
+    rgba(239,234,216,0.03) 20%,
+    rgba(239,234,216,0.12) 40%,
+    rgba(239,234,216,0.32) 60%,
+    rgba(239,234,216,0.66) 80%,
     var(--parchment) 100%);
   z-index:4;
   pointer-events:none;
