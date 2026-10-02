@@ -317,18 +317,6 @@ function wireWhatsAppButton(id, message) {
 }
 
 /* ---------- Modal de producto ---------- */
-function renderComments(comments) {
-  if (!comments || !comments.length) {
-    return `<p style="color:var(--ink-soft);font-size:0.88rem;">Todavía no hay comentarios.</p>`;
-  }
-  return comments.map((c) => `
-    <div class="comment">
-      <span class="author">${escapeHtml(c.author)}</span>
-      <span class="txt">${escapeHtml(c.text)}</span>
-    </div>
-  `).join("");
-}
-
 function openProductModal(catId, prodId) {
   const prod = (PRODUCTS[catId] || []).find((p) => p.id === prodId);
   if (!prod) return;
@@ -357,8 +345,6 @@ function openProductModal(catId, prodId) {
       <p class="modal-desc">${escapeHtml(prod.desc)}</p>
       ${infoRowHtml(prod)}
       ${whatsappButtonHtml("waBtn")}
-      <div class="comments-title">Comentarios de clientes</div>
-      <div id="commentsList">${renderComments(prod.comments)}</div>
     </div>
   `;
   openModal(backdrop);
